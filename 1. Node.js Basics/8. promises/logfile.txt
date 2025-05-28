@@ -1,0 +1,82 @@
+[2025-05-28 15:45:41] index.js:10 LOG: {} [Function: require] {
+  resolve: [Function: resolve] { paths: [Function: paths] },
+  main: {
+    id: '.',
+    path: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises',
+    exports: {},
+    filename: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/index.js',
+    loaded: false,
+    children: [ [Object] ],
+    paths: [
+      '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules',
+      '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/node_modules',
+      '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/node_modules',
+      '/home/tahsin005/Downloads/Codes/Bits & Pieces/node_modules',
+      '/home/tahsin005/Downloads/Codes/node_modules',
+      '/home/tahsin005/Downloads/node_modules',
+      '/home/tahsin005/node_modules',
+      '/home/node_modules',
+      '/node_modules'
+    ],
+    [Symbol(kIsMainSymbol)]: true,
+    [Symbol(kIsCachedByESMLoader)]: false,
+    [Symbol(kIsExecuting)]: true
+  },
+  extensions: [Object: null prototype] {
+    '.js': [Function (anonymous)],
+    '.json': [Function (anonymous)],
+    '.node': [Function (anonymous)]
+  },
+  cache: [Object: null prototype] {
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/index.js': {
+      id: '.',
+      path: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises',
+      exports: {},
+      filename: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/index.js',
+      loaded: false,
+      children: [Array],
+      paths: [Array],
+      [Symbol(kIsMainSymbol)]: true,
+      [Symbol(kIsCachedByESMLoader)]: false,
+      [Symbol(kIsExecuting)]: true
+    },
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/index.js': {
+      id: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/index.js',
+      path: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified',
+      exports: [Function],
+      filename: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/index.js',
+      loaded: true,
+      children: [],
+      paths: [Array],
+      [Symbol(kIsMainSymbol)]: false,
+      [Symbol(kIsCachedByESMLoader)]: false,
+      [Symbol(kIsExecuting)]: false
+    }
+  }
+} {
+  id: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/index.js',
+  path: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified',
+  exports: [Function: LOG] {
+    startTimer: [Function (anonymous)],
+    endTimer: [Function (anonymous)],
+    saveToFile: [Function (anonymous)]
+  },
+  filename: '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/index.js',
+  loaded: true,
+  children: [],
+  paths: [
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/node_modules',
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules',
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/node_modules',
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/node_modules',
+    '/home/tahsin005/Downloads/Codes/Bits & Pieces/node_modules',
+    '/home/tahsin005/Downloads/Codes/node_modules',
+    '/home/tahsin005/Downloads/node_modules',
+    '/home/tahsin005/node_modules',
+    '/home/node_modules',
+    '/node_modules'
+  ],
+  [Symbol(kIsMainSymbol)]: false,
+  [Symbol(kIsCachedByESMLoader)]: false,
+  [Symbol(kIsExecuting)]: false
+} /home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified/index.js /home/tahsin005/Downloads/Codes/Bits & Pieces/Complete Backend/1. Node.js Basics/8. promises/node_modules/logified
