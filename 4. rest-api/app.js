@@ -67,6 +67,23 @@ app.put("/update/:id", (req, res) => {
     }
 });
 
+app.delete("/delete/:id", (req, res) => {
+    const findIndexOfCurrentBook = books.findIndex(
+        (item) => item.id === req.params.id
+    );
+    if (findIndexOfCurrentBook !== -1) {
+        const deletedBook = books.splice(findIndexOfCurrentBook, 1);
+        res.status(200).json({
+            message: "Book deleted successfully",
+            data: deletedBook[0],
+        });
+    } else {
+        res.status(404).json({
+            message: "Book not found",
+        });
+    }
+});
+
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
