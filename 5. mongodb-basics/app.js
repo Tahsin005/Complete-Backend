@@ -45,6 +45,10 @@ async function runQueryExample() {
 
         const firstUser = await User.findOne({ age: 20 });
         console.log("First user:", firstUser);
+
+        const firstUserID = firstUser._id;
+        const userById = await User.findById(firstUserID);
+        console.log("User by ID:", userById);
     } catch (error) {
         console.log(error);
     } finally {
