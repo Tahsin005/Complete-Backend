@@ -49,8 +49,25 @@ app.post("/add", (req, res) => {
     });
 });
 
-const port = 3000;
+app.put("/update/:id", (req, res) => {
+    const findCurrentBook = books.find(
+        (bookItem) => bookItem.id === req.params.id
+    );
+    if (findCurrentBook) {
+        findCurrentBook.title = req.body.title || findCurrentBook.title;
 
+        res.status(200).json({
+            message: `Book with ID ${req.params.id} updated successfully`,
+            data: findCurrentBook,
+        });
+    } else {
+        res.status(404).json({
+            message: "Book not found",
+        });
+    }
+});
+
+const port = 3000;
 app.listen(port, () => {
-    console.log("server is running on port", port);
+    console.log(`Server is running on http://localhost:${port}`);
 });
