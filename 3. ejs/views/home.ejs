@@ -1,0 +1,16 @@
+<%- include('components/header') %>
+
+<h2>Welcome to the Home Page</h2>
+<p>This is the homepage of our component-based EJS app.</p>
+<h3>List of proudcts</h3>
+
+<ul>
+    <% products.forEach(product => { %>
+        <li>
+            <h4><%= product.name %></h4>
+            <p>Price: $<%= product.price %></p>
+        </li>
+    <% }) %>
+</ul>
+
+<%- include('components/footer') %>
