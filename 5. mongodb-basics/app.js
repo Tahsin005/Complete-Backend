@@ -37,11 +37,14 @@ async function runQueryExample() {
 
         // console.log("Created new user", newUser);
 
-        const allUser = await User.find({});
-        console.log("All users:", allUser);
+        // const allUser = await User.find({});
+        // console.log("All users:", allUser);
 
-        const activeUsers = await User.find({ isActive: true });
-        console.log("Active users:", activeUsers);
+        // const activeUsers = await User.find({ isActive: true });
+        // console.log("Active users:", activeUsers);
+
+        const firstUser = await User.findOne({ age: 20 });
+        console.log("First user:", firstUser);
     } catch (error) {
         console.log(error);
     } finally {
