@@ -99,7 +99,23 @@ const loginUser = async (req, res) => {
     }
 };
 
+const changePassword = async (req, res) => {
+    try {
+        return res.status(501).json({
+            success: false,
+            message: "Change password functionality is not implemented yet.",
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "Some error occured! Please try again",
+        });
+    }
+};
+
 module.exports = {
     registerUser,
     loginUser,
+    changePassword
 };
