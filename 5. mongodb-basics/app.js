@@ -56,8 +56,11 @@ async function runQueryExample() {
         // const limitUsers = await User.find().limit(3).skip(1);
         // console.log("Limited users:", limitUsers);
 
-        const sortedUsers = await User.find().sort({ age: -1 });
-        console.log("Sorted users by age:", sortedUsers);
+        // const sortedUsers = await User.find().sort({ age: -1 });
+        // console.log("Sorted users by age:", sortedUsers);
+
+        const countDocuments = await User.countDocuments({ isActive: false });
+        console.log("Count of inactive users:", countDocuments);
     } catch (error) {
         console.log(error);
     } finally {
