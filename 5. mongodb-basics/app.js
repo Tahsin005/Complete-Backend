@@ -59,8 +59,11 @@ async function runQueryExample() {
         // const sortedUsers = await User.find().sort({ age: -1 });
         // console.log("Sorted users by age:", sortedUsers);
 
-        const countDocuments = await User.countDocuments({ isActive: false });
-        console.log("Count of inactive users:", countDocuments);
+        // const countDocuments = await User.countDocuments({ isActive: false });
+        // console.log("Count of inactive users:", countDocuments);
+
+        const deletdUser = await User.findByIdAndDelete('6839243056b10148532b9032');
+        console.log("Deleted user:", deletdUser);
     } catch (error) {
         console.log(error);
     } finally {
