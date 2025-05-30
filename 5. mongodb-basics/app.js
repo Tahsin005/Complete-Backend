@@ -43,12 +43,15 @@ async function runQueryExample() {
         // const activeUsers = await User.find({ isActive: true });
         // console.log("Active users:", activeUsers);
 
-        const firstUser = await User.findOne({ age: 20 });
-        console.log("First user:", firstUser);
+        // const firstUser = await User.findOne({ age: 20 });
+        // console.log("First user:", firstUser);
 
-        const firstUserID = firstUser._id;
-        const userById = await User.findById(firstUserID);
-        console.log("User by ID:", userById);
+        // const firstUserID = firstUser._id;
+        // const userById = await User.findById(firstUserID);
+        // console.log("User by ID:", userById);
+
+        const selectedFields = await User.find().select("name email -_id")
+        console.log(selectedFields);
     } catch (error) {
         console.log(error);
     } finally {
