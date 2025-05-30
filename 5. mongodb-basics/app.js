@@ -62,8 +62,13 @@ async function runQueryExample() {
         // const countDocuments = await User.countDocuments({ isActive: false });
         // console.log("Count of inactive users:", countDocuments);
 
-        const deletdUser = await User.findByIdAndDelete('6839243056b10148532b9032');
-        console.log("Deleted user:", deletdUser);
+        // const deletdUser = await User.findByIdAndDelete('6839243056b10148532b9032');
+        // console.log("Deleted user:", deletdUser);
+
+        const updatedUser = await User.findByIdAndUpdate('683923d9442a4eee5918d539', {
+            $set: { age: 69, name: 'Updated Namee' }, $push: { tags: 'Updated Tag' }
+        }, { new: true });
+        console.log("Updated user:", updatedUser);
     } catch (error) {
         console.log(error);
     } finally {
