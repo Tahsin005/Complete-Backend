@@ -4,7 +4,7 @@ const {
     getAllBooks,
     getBookById,
     addNewBook,
-    updateBookById,
+    updateBook,
     deleteBookById
 } = require('../controllers/book.controllers.js');
 
@@ -13,7 +13,7 @@ const {
 router.get('/get', getAllBooks);
 router.get('/get/:id', getBookById);
 router.post('/add', addNewBook);
-router.put('/update/:id', updateBookById);
+router.put('/update/:id', updateBook);
 router.delete('/delete/:id', deleteBookById);
 
 module.exports = router;
