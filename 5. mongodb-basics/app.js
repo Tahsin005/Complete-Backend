@@ -25,45 +25,45 @@ const User = mongoose.model('User', userSchema);
 async function runQueryExample() {
     try {
         // create a new document
-        // const newUser = await User({
-        //     name: 'Sagor',
-        //     email: 'sagor@affpilot.com',
-        //     age: 25,
-        //     isActive: false,
-        //     tags: ['Jr. Software Engineer']
-        // });
+        const newUser = await User({
+            name: 'Sagor',
+            email: 'sagor@affpilot.com',
+            age: 25,
+            isActive: false,
+            tags: ['Jr. Software Engineer']
+        });
 
-        // await newUser.save();
+        await newUser.save();
 
-        // console.log("Created new user", newUser);
+        console.log("Created new user", newUser);
 
-        // const allUser = await User.find({});
-        // console.log("All users:", allUser);
+        const allUser = await User.find({});
+        console.log("All users:", allUser);
 
-        // const activeUsers = await User.find({ isActive: true });
-        // console.log("Active users:", activeUsers);
+        const activeUsers = await User.find({ isActive: true });
+        console.log("Active users:", activeUsers);
 
-        // const firstUser = await User.findOne({ age: 20 });
-        // console.log("First user:", firstUser);
+        const firstUser = await User.findOne({ age: 20 });
+        console.log("First user:", firstUser);
 
-        // const firstUserID = firstUser._id;
-        // const userById = await User.findById(firstUserID);
-        // console.log("User by ID:", userById);
+        const firstUserID = firstUser._id;
+        const userById = await User.findById(firstUserID);
+        console.log("User by ID:", userById);
 
-        // const selectedFields = await User.find().select("name email -_id")
-        // console.log(selectedFields);
+        const selectedFields = await User.find().select("name email -_id")
+        console.log(selectedFields);
 
-        // const limitUsers = await User.find().limit(3).skip(1);
-        // console.log("Limited users:", limitUsers);
+        const limitUsers = await User.find().limit(3).skip(1);
+        console.log("Limited users:", limitUsers);
 
-        // const sortedUsers = await User.find().sort({ age: -1 });
-        // console.log("Sorted users by age:", sortedUsers);
+        const sortedUsers = await User.find().sort({ age: -1 });
+        console.log("Sorted users by age:", sortedUsers);
 
-        // const countDocuments = await User.countDocuments({ isActive: false });
-        // console.log("Count of inactive users:", countDocuments);
+        const countDocuments = await User.countDocuments({ isActive: false });
+        console.log("Count of inactive users:", countDocuments);
 
-        // const deletdUser = await User.findByIdAndDelete('6839243056b10148532b9032');
-        // console.log("Deleted user:", deletdUser);
+        const deletdUser = await User.findByIdAndDelete('6839243056b10148532b9032');
+        console.log("Deleted user:", deletdUser);
 
         const updatedUser = await User.findByIdAndUpdate('683923d9442a4eee5918d539', {
             $set: { age: 69, name: 'Updated Namee' }, $push: { tags: 'Updated Tag' }
