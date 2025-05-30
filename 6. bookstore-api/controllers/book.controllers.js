@@ -72,7 +72,30 @@ const addNewBook = async (req, res) => {
 
 const updateBookById = async (req, res) => {};
 
-const deleteBookById = async (req, res) => {};
+const deleteBookById = async (req, res) => {
+    try {
+        const getCurrentBookID = req.params.id;
+        const deletedBook = await Book.findByIdAndDelete(getCurrentBookID);
+
+        if (!deletedBook) {
+            res.status(404).json({
+                success: false,
+                message: "Book is not found with this ID",
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: deletedBook,
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).json({
+            success: false,
+            message: "Something went wrong! Please try again",
+        });
+    }
+};
 
 module.exports = {
   getAllBooks,
