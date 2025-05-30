@@ -26,11 +26,11 @@ async function runQueryExample() {
     try {
         // create a new document
         // const newUser = await User({
-        //     name: 'Tahsin',
-        //     email: 'tahsin@affpilot.com',
-        //     age: 20,
+        //     name: 'Sagor',
+        //     email: 'sagor@affpilot.com',
+        //     age: 25,
         //     isActive: false,
-        //     tags: ['Full Stack Engineer', 'Competitive Programmer', 'Speed Cuber']
+        //     tags: ['Jr. Software Engineer']
         // });
 
         // await newUser.save();
@@ -50,8 +50,11 @@ async function runQueryExample() {
         // const userById = await User.findById(firstUserID);
         // console.log("User by ID:", userById);
 
-        const selectedFields = await User.find().select("name email -_id")
-        console.log(selectedFields);
+        // const selectedFields = await User.find().select("name email -_id")
+        // console.log(selectedFields);
+
+        const limitUsers = await User.find().limit(3).skip(1);
+        console.log("Limited users:", limitUsers);
     } catch (error) {
         console.log(error);
     } finally {
