@@ -22,7 +22,7 @@ const uploadImage = async (req, res) => {
         await newlyUploadedImage.save();
 
         //delete the file from local stroage
-        fs.unlinkSync(req.file.path);
+        // fs.unlinkSync(req.file.path);
 
         res.status(201).json({
             success: true,
@@ -38,6 +38,27 @@ const uploadImage = async (req, res) => {
     }
 };
 
+const fetchImages = async (req, res) => {
+    try {
+        const images = await Image.find({});
+
+        if (images) {
+            return res.status(200).json({
+                success: true,
+                message: 'Images fetched successfully',
+                data: images
+            });
+        }
+    } catch (error) {
+        console.error('Error fetching images:', error);
+        return res.status(500).json({
+            success: false,
+            message: 'Failed to fetch images'
+        });
+    }
+};
+
 module.exports = {
-    uploadImage
+    uploadImage,
+    fetchImages
 };
