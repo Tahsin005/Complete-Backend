@@ -1,5 +1,6 @@
 const { uploadToCloudinary } = require('../helpers/cloudinary.helpers.js');
 const Image = require('../models/image.models.js');
+const fs = require("fs");
 
 const uploadImage = async (req, res) => {
     try {
@@ -20,9 +21,12 @@ const uploadImage = async (req, res) => {
 
         await newlyUploadedImage.save();
 
+        //delete the file from local stroage
+        fs.unlinkSync(req.file.path);
+
         res.status(201).json({
             success: true,
-            message: "Imaged uploaded successfully",
+            message: "Image uploaded successfully",
             image: newlyUploadedImage,
         });
     } catch (error) {
