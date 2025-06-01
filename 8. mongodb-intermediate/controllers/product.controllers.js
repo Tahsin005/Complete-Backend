@@ -58,14 +58,25 @@ const getProductStats = async (req, res) => {
     try {
         // get all the products that are in stock and the price is greater than 100
         const result = await Product.aggregate([
+            // {
+            //     $match: {
+            //         inStock: true,
+            //         price: {
+            //             $gt: 100
+            //         }
+            //     }
+            // },
             {
-                $match: {
-                    inStock: true,
-                    price: {
-                        $gt: 100
-                    }
-                }
-            }
+                $group: {
+                    _id: "$category",
+                    avgPrice: {
+                        $avg: "$price",
+                    },
+                    count: {
+                        $sum: 1,
+                    },
+                },
+            },
         ])
 
 
