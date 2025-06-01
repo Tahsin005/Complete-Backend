@@ -80,6 +80,19 @@ const getProductAnalysis = async (req, res) => {
                         $sum: 1,
                     },
                 }
+            },
+            {
+                $project: {
+                    _id: 0,
+                    totalRevenue: 1,
+                    averagePrice: 1,
+                    maxPrice: 1,
+                    minPrice: 1,
+                    totalProducts: 1,
+                    priceRange: {
+                        $subtract: ["$maxPrice", "$minPrice"]
+                    }
+                }
             }
         ]);
 
