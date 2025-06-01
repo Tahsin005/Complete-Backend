@@ -54,6 +54,36 @@ const insertSampleProducts = async (req, res) => {
 };
 
 
+const getProductStats = async (req, res) => {
+    try {
+        // get all the products that are in stock and the price is greater than 100
+        const result = await Product.aggregate([
+            {
+                $match: {
+                    inStock: true,
+                    price: {
+                        $gt: 100
+                    }
+                }
+            }
+        ])
+
+
+        res.status(200).json({
+            success: true,
+            data: result,
+        });
+    } catch (error) {
+        console.log(e);
+        res.status(500).json({
+            success: false,
+            message: "Some error occured!",
+        });
+    }
+}
+
+
 module.exports = {
     insertSampleProducts,
+    getProductStats
 };
