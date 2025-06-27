@@ -1,83 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div id="user-list">
-        <h2>Online Users</h2>
-        <ul id="users">
-            <!-- User list will be populated here -->
-        </ul>
-    </div>
-    <div id="chat">
+<body class="bg-gray-100 h-full flex flex-col">
+  <div class="flex flex-1 overflow-hidden">
+    <aside class="w-64 bg-white shadow-md p-4 overflow-y-auto">
+      <h2 class="text-xl font-semibold text-gray-800 mb-4">Online Users</h2>
+      <ul id="users" class="space-y-2 text-gray-700">
+        <!-- User list will be populated here -->
+      </ul>
+    </aside>
 
-    </div>
-    <form id="message-form">
-        <input type="text" id="message-input" placeholder="Type your message here..." required>
-        <button type="submit">Send</button>
-    </form>
+    <!-- Main chat area -->
+    <main class="flex-1 flex flex-col">
+      <div id="chat" class="flex-1 p-4 overflow-y-auto space-y-2 bg-white">
+      </div>
 
-    <script src="/socket.io/socket.io.js">
-    </script>
+      <form id="message-form" class="flex items-center gap-2 p-4 bg-gray-50 border-t">
+        <input
+          type="text"
+          id="message-input"
+          placeholder="Type your message here..."
+          required
+          class="flex-1 px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          type="submit"
+          class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
+        >
+          Send
+        </button>
+      </form>
+    </main>
+  </div>
 
-    <script>
-        const socket = io();
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
 
-        // get the dom elements
-        const chat = document.getElementById('chat');
-        const usersList = document.getElementById('users');
-        const messageForm = document.getElementById('message-form');
-        const messageInput = document.getElementById('message-input');
+    const chat = document.getElementById('chat');
+    const usersList = document.getElementById('users');
+    const messageForm = document.getElementById('message-form');
+    const messageInput = document.getElementById('message-input');
 
-        const userName = prompt("Enter your name:");
-        socket.emit('join', userName);
+    const userName = prompt("Enter your name:");
+    socket.emit('join', userName);
 
-        socket.on("userJoined", (user) => {
-            addMessage(`${user} has joined the chat.`);
+    socket.on("userJoined", (user) => {
+      addMessage(`${user} has joined the chat.`, 'text-green-600');
+    });
+
+    socket.on("userList", (users) => {
+      usersList.innerHTML = '';
+      users.forEach(user => {
+        const userItem = document.createElement('li');
+        userItem.textContent = user;
+        userItem.className = 'px-3 py-1 rounded bg-gray-100 hover:bg-gray-200';
+        usersList.appendChild(userItem);
+      });
+    });
+
+    socket.on("userLeft", (user) => {
+      addMessage(`${user} has left the chat.`, 'text-red-500');
+    });
+
+    socket.on("chatMessage", (message) => {
+      addMessage(`${message.userName}: ${message.text}`);
+    });
+
+    messageForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const messageText = messageInput.value.trim();
+      if (messageText) {
+        socket.emit("chatMessage", {
+          userName, text: messageText
         });
+      }
+      messageInput.value = '';
+    });
 
-        socket.on("userList", (users) => {
-            usersList.innerHTML = '';
-            users.forEach(user => {
-                const userItem = document.createElement('li');
-                userItem.textContent = user;
-                usersList.appendChild(userItem);
-            });
-        });
-
-        socket.on("userLeft", (user) => {
-            addMessage(`${user} has left the chat.`);
-        });
-
-        // listen for incoming messages
-        socket.on("chatMessage", (message) => {
-            addMessage(`${message.userName}: ${message.text}`);
-        });
-
-        // handle form submission
-        messageForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const messageText = messageInput.value.trim();
-            if (messageText) {
-                socket.emit("chatMessage", {
-                    userName, text: messageText
-                })
-            }
-
-            messageInput.value = '';
-        });
-
-        function addMessage(input) {
-            const messageElement = document.createElement('div');
-            messageElement.textContent = input;
-            chat.appendChild(messageElement);
-
-            chat.scrollTop = chat.scrollHeight; // Scroll to the bottom
-        }
-    </script>
+    function addMessage(text, extraClass = '') {
+      const messageElement = document.createElement('div');
+      messageElement.textContent = text;
+      messageElement.className = `p-2 rounded-md bg-gray-100 ${extraClass}`;
+      chat.appendChild(messageElement);
+      chat.scrollTop = chat.scrollHeight;
+    }
+  </script>
 </body>
 </html>
