@@ -18,8 +18,22 @@ io.on("connection", (socket) => {
     console.log("A user connected");
 
     // handle user joining
+    socket.on("join", (userName) => {
+        users.add(userName);
+
+        // broadcast to all users that a new user has joined
+        io.emit("userJoined", userName);
+
+        // send the updated user list to all connected clients
+        io.emit("userList", Array.from(users));
+    });
 
     // incoming chat messages
 
     // user disconnections
+});
+
+const PORT = 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
 });

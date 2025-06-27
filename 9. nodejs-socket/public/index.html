@@ -19,5 +19,33 @@
         <input type="text" id="message-input" placeholder="Type your message here..." required>
         <button type="submit">Send</button>
     </form>
+
+    <script src="/socket.io/socket.io.js">
+    </script>
+
+    <script>
+        const socket = io();
+
+        // get the dom elements
+        const chat = document.getElementById('chat');
+        const usersList = document.getElementById('users');
+        const messageForm = document.getElementById('message-form');
+        const messageInput = document.getElementById('message-input');
+
+        const userName = prompt("Enter your name:");
+        socket.emit('join', userName);
+
+        socket.on("userJoined", (user) => {
+            addMessage(`${user} has joined the chat.`);
+        });
+
+        function addMessage(input) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = input;
+            chat.appendChild(messageElement);
+
+            chat.scrollTop = chat.scrollHeight; // Scroll to the bottom
+        }
+    </script>
 </body>
 </html>
