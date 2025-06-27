@@ -29,6 +29,10 @@ io.on("connection", (socket) => {
     });
 
     // incoming chat messages
+    socket.on("chatMessage", ({userName, text}) => {
+        // broadcast the message to all users
+        io.emit("chatMessage", {userName, text});
+    });
 
     // user disconnections
 });

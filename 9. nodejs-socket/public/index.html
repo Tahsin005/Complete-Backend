@@ -39,6 +39,34 @@
             addMessage(`${user} has joined the chat.`);
         });
 
+        socket.on("userList", (users) => {
+            usersList.innerHTML = '';
+            users.forEach(user => {
+                const userItem = document.createElement('li');
+                userItem.textContent = user;
+                usersList.appendChild(userItem);
+            });
+        });
+
+        // listen for incoming messages
+        socket.on("chatMessage", (message) => {
+            addMessage(`${message.userName}: ${message.text}`);
+        });
+
+        // handle form submission
+        messageForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const messageText = messageInput.value.trim();
+            if (messageText) {
+                socket.emit("chatMessage", {
+                    userName, text: messageText
+                })
+            }
+
+            messageInput.value = '';
+        });
+
         function addMessage(input) {
             const messageElement = document.createElement('div');
             messageElement.textContent = input;
