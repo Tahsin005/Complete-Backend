@@ -48,6 +48,10 @@
             });
         });
 
+        socket.on("userLeft", (user) => {
+            addMessage(`${user} has left the chat.`);
+        });
+
         // listen for incoming messages
         socket.on("chatMessage", (message) => {
             addMessage(`${message.userName}: ${message.text}`);

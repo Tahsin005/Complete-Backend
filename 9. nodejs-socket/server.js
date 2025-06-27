@@ -20,6 +20,7 @@ io.on("connection", (socket) => {
     // handle user joining
     socket.on("join", (userName) => {
         users.add(userName);
+        socket.userName = userName; // store the user's name in the socket object
 
         // broadcast to all users that a new user has joined
         io.emit("userJoined", userName);
@@ -35,6 +36,21 @@ io.on("connection", (socket) => {
     });
 
     // user disconnections
+    socket.on("disconnect", () => {
+        console.log("A user disconnected");
+
+        // remove the user from the set
+        users.forEach((user) => {
+            if (user === socket.userName) {
+                users.delete(user);
+                io.emit("userLeft", user);
+                io.emit("userList", Array.from(users));
+            }
+        });
+
+        // send the updated user list to all connected clients
+        io.emit("userList", Array.from(users));
+    });
 });
 
 const PORT = 3000;
